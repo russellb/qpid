@@ -27,9 +27,11 @@
 #include "qmf/SchemaPropertyImpl.h"
 #include "qmf/SchemaMethodImpl.h"
 #include "qmf/Hash.h"
+#include "qmf/NameCmp.h"
 #include "qpid/log/Statement.h"
 #include "qpid/management/Buffer.h"
 #include <list>
+#include <algorithm>
 
 using namespace std;
 using qpid::types::Variant;
@@ -54,8 +56,10 @@ void Schema::setDefaultSeverity(int s) { impl->setDefaultSeverity(s); }
 int Schema::getDefaultSeverity() const { return impl->getDefaultSeverity(); }
 uint32_t Schema::getPropertyCount() const { return impl->getPropertyCount(); }
 SchemaProperty Schema::getProperty(uint32_t i) const { return impl->getProperty(i); }
+SchemaProperty Schema::getProperty(const std::string &property_name) const { return impl->getProperty(property_name); }
 uint32_t Schema::getMethodCount() const { return impl->getMethodCount(); }
 SchemaMethod Schema::getMethod(uint32_t i) const { return impl->getMethod(i); }
+SchemaMethod Schema::getMethod(const std::string &method_name) const { return impl->getMethod(method_name); }
 
 //========================================================================================
 // Impl Method Bodies
@@ -272,6 +276,16 @@ SchemaProperty SchemaImpl::getProperty(uint32_t i) const
 }
 
 
+SchemaProperty SchemaImpl::getProperty(const std::string &property_name) const
+{
+    list<SchemaProperty>::const_iterator iter;
+
+    iter = find_if(properties.begin(), properties.end(), NameCmp<SchemaProperty>(property_name));
+
+    return iter != properties.end() ? *iter : SchemaProperty();
+}
+
+
 SchemaMethod SchemaImpl::getMethod(uint32_t i) const
 {
     uint32_t count = 0;
@@ -280,6 +294,17 @@ SchemaMethod SchemaImpl::getMethod(uint32_t i) const
             return *iter;
     throw IndexOutOfRange();
 }
+
+
+SchemaMethod SchemaImpl::getMethod(const std::string &method_name) const
+{
+    list<SchemaMethod>::const_iterator iter;
+
+    iter = find_if(methods.begin(), methods.end(), NameCmp<SchemaMethod>(method_name));
+
+    return iter != methods.end() ? *iter : SchemaMethod();
+}
+
 
 void SchemaImpl::checkFinal() const
 {

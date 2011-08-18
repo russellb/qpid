@@ -99,6 +99,21 @@ namespace qmf {
         QMF_EXTERN const std::string& getPackage(uint32_t) const;
 
         /**
+         * Check to see if this agent includes a package
+         *
+         * \param[in] package_name The name of the package to check for
+         *
+         * \note This function is synchronous and non-blocking.  It checks locally
+         * cached data and will not send any messages to the remote agent.  Use
+         * querySchema[Async] to get the latest schema information from the
+         * remote agent.
+         *
+         * \retval true the package was found
+         * \retval false the package was not found
+         */
+        QMF_EXTERN bool hasPackage(const std::string &package_name) const;
+
+        /**
          * Get the list of schema identifiers for a particular package.
          *
          *   getSchemaIdCount returns the number of IDs in the indicates package.

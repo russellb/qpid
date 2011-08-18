@@ -23,8 +23,10 @@
 #include "qmf/PrivateImplRef.h"
 #include "qmf/exceptions.h"
 #include "qmf/Hash.h"
+#include "qmf/NameCmp.h"
 #include "qpid/messaging/AddressParser.h"
 #include "qpid/management/Buffer.h"
+#include <algorithm>
 
 using namespace std;
 using qpid::types::Variant;
@@ -44,6 +46,7 @@ const string& SchemaMethod::getName() const { return impl->getName(); }
 const string& SchemaMethod::getDesc() const { return impl->getDesc(); }
 uint32_t SchemaMethod::getArgumentCount() const { return impl->getArgumentCount(); }
 SchemaProperty SchemaMethod::getArgument(uint32_t i) const { return impl->getArgument(i); }
+SchemaProperty SchemaMethod::getArgument(const string& a) const { return impl->getArgument(a); }
 
 //========================================================================================
 // Impl Method Bodies
@@ -146,6 +149,16 @@ SchemaProperty SchemaMethodImpl::getArgument(uint32_t i) const
             return *iter;
     
     throw IndexOutOfRange();
+}
+
+
+SchemaProperty SchemaMethodImpl::getArgument(const std::string &arg_name) const
+{
+    list<SchemaProperty>::const_iterator iter;
+
+    iter = find_if(arguments.begin(), arguments.end(), NameCmp<SchemaProperty>(arg_name));
+
+    return iter != arguments.end() ? *iter : SchemaProperty();
 }
 
 

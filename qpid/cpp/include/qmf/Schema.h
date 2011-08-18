@@ -61,8 +61,38 @@ namespace qmf {
         QMF_EXTERN uint32_t getPropertyCount() const;
         QMF_EXTERN SchemaProperty getProperty(uint32_t) const;
 
+        /**
+         * Get a schema property by name
+         *
+         * \param[in] property_name The name of the property to look up
+         *
+         * \note This function is synchronous and non-blocking.  It checks locally
+         * cached data and will not send any messages to the remote agent.  Use
+         * qmf::Agent::querySchema[Async] to get the latest schema information from
+         * the remote agent.
+         *
+         * \return The SchemaProperty with the given name, if found.  If it is
+         * not found, a SchemaProperty with no Impl will be returned.
+         */
+        QMF_EXTERN SchemaProperty getProperty(const std::string &property_name) const;
+
         QMF_EXTERN uint32_t getMethodCount() const;
         QMF_EXTERN SchemaMethod getMethod(uint32_t) const;
+
+        /**
+         * Get a schema method by name
+         *
+         * \param[in] method_name The name of the method to look up
+         *
+         * \note This function is synchronous and non-blocking.  It checks locally
+         * cached data and will not send any messages to the remote agent.  Use
+         * qmf::Agent::querySchema[Async] to get the latest schema information from
+         * the remote agent.
+         *
+         * \return The SchemaMethod with the given name, if found.  If it is
+         * not found, a SchemaMethod with no Impl will be returned.
+         */
+        QMF_EXTERN SchemaMethod getMethod(const std::string &method_name) const;
 
 #ifndef SWIG
     private:

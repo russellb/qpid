@@ -78,6 +78,7 @@ namespace qmf {
 
         uint32_t getPackageCount() const;
         const std::string& getPackage(uint32_t i) const;
+        bool hasPackage(const std::string& pname) const;
         uint32_t getSchemaIdCount(const std::string& p) const;
         SchemaId getSchemaId(const std::string& p, uint32_t i) const;
         Schema getSchema(const SchemaId& s, qpid::messaging::Duration t);

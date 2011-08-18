@@ -34,6 +34,8 @@
 #include "qpid/log/Statement.h"
 #include <boost/lexical_cast.hpp>
 
+#include <algorithm>
+
 using qpid::types::Variant;
 using qpid::messaging::Duration;
 using qpid::messaging::Message;
@@ -64,6 +66,7 @@ ConsoleEvent Agent::callMethod(const string& m, const Variant::Map& a, const Dat
 uint32_t Agent::callMethodAsync(const string& m, const Variant::Map& a, const DataAddr& d) { return impl->callMethodAsync(m, a, d); }
 uint32_t Agent::getPackageCount() const { return impl->getPackageCount(); }
 const string& Agent::getPackage(uint32_t i) const { return impl->getPackage(i); }
+bool Agent::hasPackage(const string& p) const { return impl->hasPackage(p); }
 uint32_t Agent::getSchemaIdCount(const string& p) const { return impl->getSchemaIdCount(p); }
 SchemaId Agent::getSchemaId(const string& p, uint32_t i) const { return impl->getSchemaId(p, i); }
 Schema Agent::getSchema(const SchemaId& s, Duration t) { return impl->getSchema(s, t); }
@@ -237,6 +240,14 @@ const string& AgentImpl::getPackage(uint32_t idx) const
         count++;
     }
     throw IndexOutOfRange();
+}
+
+
+bool AgentImpl::hasPackage(const string& pname) const
+{
+    qpid::sys::Mutex::ScopedLock l(lock);
+
+    return find(packageSet.begin(), packageSet.end(), pname) != packageSet.end();
 }
 
 

@@ -69,9 +69,11 @@ namespace qmf {
 
         uint32_t getPropertyCount() const { return properties.size(); }
         SchemaProperty getProperty(uint32_t i) const;
+        SchemaProperty getProperty(const std::string &property_name) const;
 
         uint32_t getMethodCount() const { return methods.size(); }
         SchemaMethod getMethod(uint32_t i) const;
+        SchemaMethod getMethod(const std::string &method_name) const;
     private:
         SchemaId schemaId;
         int defaultSeverity;

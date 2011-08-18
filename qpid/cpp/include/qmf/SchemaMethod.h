@@ -53,6 +53,21 @@ namespace qmf {
         QMF_EXTERN uint32_t getArgumentCount() const;
         QMF_EXTERN SchemaProperty getArgument(uint32_t) const;
 
+        /**
+         * Get a method's argument by name
+         *
+         * \param[in] The name of the argument to look up
+         *
+         * \note This function is synchronous and non-blocking.  It checks locally
+         * cached data and will not send any messages to the remote agent.  Use
+         * qmf::Agent::querySchema[Async] to get the latest schema information from
+         * the remote agent.
+         *
+         * \return The SchemaProperty for the given argument name, if found.
+         * If it is not found, a SchemaPropert with no Impl will be returned.
+         */
+        QMF_EXTERN SchemaProperty getArgument(const std::string &arg_name) const;
+
 #ifndef SWIG
     private:
         friend class qmf::PrivateImplRef<SchemaMethod>;

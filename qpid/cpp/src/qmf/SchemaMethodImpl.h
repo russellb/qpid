@@ -58,6 +58,7 @@ namespace qmf {
         const std::string& getDesc() const { return desc; }
         uint32_t getArgumentCount() const { return arguments.size(); }
         SchemaProperty getArgument(uint32_t i) const;
+        SchemaProperty getArgument(const std::string &arg_name) const;
 
     private:
         std::string name;
