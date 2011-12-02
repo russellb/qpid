@@ -21,7 +21,7 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qmf/PrivateImplRef.h"
 #include "qmf/exceptions.h"
 #include "qmf/SchemaTypes.h"
@@ -37,7 +37,7 @@ namespace management {
 }}
 
 namespace qmf {
-    class SchemaImpl : public virtual qpid::RefCounted {
+    class SchemaImpl : public virtual qmf::RefCounted {
     public:
         //
         // Impl-only public methods

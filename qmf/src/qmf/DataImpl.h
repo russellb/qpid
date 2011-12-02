@@ -21,7 +21,7 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qmf/Data.h"
 #include "qmf/SchemaId.h"
 #include "qmf/Schema.h"
@@ -31,7 +31,7 @@
 #include "qpid/types/Variant.h"
 
 namespace qmf {
-    class DataImpl : public virtual qpid::RefCounted {
+    class DataImpl : public virtual qmf::RefCounted {
     public:
         //
         // Public impl-only methods

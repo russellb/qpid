@@ -21,7 +21,7 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qpid/sys/Mutex.h"
 #include "qpid/sys/IntegerTypes.h"
 #include "qpid/messaging/Address.h"
@@ -33,7 +33,7 @@
 #include <queue>
 
 namespace qmf {
-    class AgentEventImpl : public virtual qpid::RefCounted {
+    class AgentEventImpl : public virtual qmf::RefCounted {
     public:
         //
         // Impl-only methods

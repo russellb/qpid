@@ -21,11 +21,11 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qmf/Subscription.h"
 
 namespace qmf {
-    class SubscriptionImpl : public virtual qpid::RefCounted {
+    class SubscriptionImpl : public virtual qmf::RefCounted {
     public:
         //
         // Public impl-only methods

@@ -21,7 +21,7 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qmf/ConsoleEvent.h"
 #include "qmf/Agent.h"
 #include "qmf/Data.h"
@@ -29,7 +29,7 @@
 #include <list>
 
 namespace qmf {
-    class ConsoleEventImpl : public virtual qpid::RefCounted {
+    class ConsoleEventImpl : public virtual qmf::RefCounted {
     public:
         //
         // Impl-only methods

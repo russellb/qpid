@@ -21,7 +21,7 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qmf/SchemaTypes.h"
 #include "qmf/SchemaMethod.h"
 #include "qmf/SchemaPropertyImpl.h"
@@ -36,7 +36,7 @@ namespace management {
 
 namespace qmf {
     class Hash;
-    class SchemaMethodImpl : public virtual qpid::RefCounted {
+    class SchemaMethodImpl : public virtual qmf::RefCounted {
     public:
         //
         // Public impl-only methods

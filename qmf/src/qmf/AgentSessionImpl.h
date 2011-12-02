@@ -22,7 +22,7 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qmf/PrivateImplRef.h"
 #include "qmf/exceptions.h"
 #include "qmf/AgentSession.h"
@@ -40,9 +40,8 @@
 #include "qpid/messaging/Receiver.h"
 #include "qpid/messaging/Sender.h"
 #include "qpid/messaging/Message.h"
-#include "qpid/messaging/AddressParser.h"
+#include "qmf/AddressParser.h"
 #include "qpid/management/Buffer.h"
-#include "qpid/RefCounted.h"
 #include "qmf/PrivateImplRef.h"
 #include "qmf/AgentSession.h"
 #include "qmf/exceptions.h"
@@ -68,7 +67,7 @@ using qpid::types::Variant;
 typedef qmf::PrivateImplRef<AgentSession> PI;
 
 namespace qmf {
-    class AgentSessionImpl : public virtual qpid::RefCounted, public qpid::sys::Runnable {
+    class AgentSessionImpl : public virtual qmf::RefCounted, public qpid::sys::Runnable {
     public:
         ~AgentSessionImpl();
 

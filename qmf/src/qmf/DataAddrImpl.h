@@ -21,13 +21,13 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qpid/sys/IntegerTypes.h"
 #include "qpid/types/Variant.h"
 #include "qmf/DataAddr.h"
 
 namespace qmf {
-    class DataAddrImpl : public virtual qpid::RefCounted {
+    class DataAddrImpl : public virtual qmf::RefCounted {
     public:
         //
         // Impl-only methods

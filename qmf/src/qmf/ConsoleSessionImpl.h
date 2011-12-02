@@ -21,7 +21,7 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qmf/ConsoleSession.h"
 #include "qmf/AgentImpl.h"
 #include "qmf/SchemaId.h"
@@ -50,7 +50,7 @@
 using namespace std;
 
 namespace qmf {
-    class ConsoleSessionImpl : public virtual qpid::RefCounted, public qpid::sys::Runnable {
+    class ConsoleSessionImpl : public virtual qmf::RefCounted, public qpid::sys::Runnable {
     public:
         ~ConsoleSessionImpl();
 

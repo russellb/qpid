@@ -21,7 +21,7 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qmf/Query.h"
 #include "qmf/DataAddr.h"
 #include "qmf/SchemaId.h"
@@ -30,7 +30,7 @@
 #include <boost/shared_ptr.hpp>
 
 namespace qmf {
-    class QueryImpl : public virtual qpid::RefCounted {
+    class QueryImpl : public virtual qmf::RefCounted {
     public:
         //
         // Public impl-only methods

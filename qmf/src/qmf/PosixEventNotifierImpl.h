@@ -22,14 +22,14 @@
 
 #include "qmf/posix/EventNotifier.h"
 #include "qmf/EventNotifierImpl.h"
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 
 namespace qmf
 {
     class AgentSession;
     class ConsoleSession;
 
-    class PosixEventNotifierImpl : public EventNotifierImpl, public virtual qpid::RefCounted
+    class PosixEventNotifierImpl : public EventNotifierImpl, public virtual qmf::RefCounted
     {
     public:
         PosixEventNotifierImpl(AgentSession& agentSession);

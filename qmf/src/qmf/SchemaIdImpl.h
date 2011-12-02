@@ -21,14 +21,14 @@
  *
  */
 
-#include "qpid/RefCounted.h"
+#include "qmf/RefCounted.h"
 #include "qmf/SchemaId.h"
 #include "qpid/types/Variant.h"
 #include "qpid/types/Uuid.h"
 #include <string>
 
 namespace qmf {
-    class SchemaIdImpl : public virtual qpid::RefCounted {
+    class SchemaIdImpl : public virtual qmf::RefCounted {
     public:
         //
         // Public impl-only methods
