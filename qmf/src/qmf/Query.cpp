@@ -24,7 +24,7 @@
 #include "qmf/QueryImpl.h"
 #include "qmf/DataAddrImpl.h"
 #include "qmf/SchemaIdImpl.h"
-#include "qpid/messaging/AddressParser.h"
+#include "qmf/AddressParser.h"
 
 using namespace std;
 using namespace qmf;
@@ -134,7 +134,7 @@ void QueryImpl::parsePredicate(const string& pred)
         //
         // Parse this as an AddressParser list.
         //
-        qpid::messaging::AddressParser parser(pred);
+        qmf::AddressParser parser(pred);
         parser.parseList(predicate);
     } else
         throw QmfException("Invalid predicate format");

@@ -23,7 +23,7 @@
 #include "qmf/PrivateImplRef.h"
 #include "qmf/exceptions.h"
 #include "qmf/Hash.h"
-#include "qpid/messaging/AddressParser.h"
+#include "qmf/AddressParser.h"
 #include "qpid/management/Buffer.h"
 
 using namespace std;
@@ -52,7 +52,7 @@ SchemaProperty SchemaMethod::getArgument(uint32_t i) const { return impl->getArg
 SchemaMethodImpl::SchemaMethodImpl(const string& n, const string& options) : name(n)
 {
     if (!options.empty()) {
-        qpid::messaging::AddressParser parser = qpid::messaging::AddressParser(options);
+        qmf::AddressParser parser = qmf::AddressParser(options);
         Variant::Map optMap;
         Variant::Map::iterator iter;
 

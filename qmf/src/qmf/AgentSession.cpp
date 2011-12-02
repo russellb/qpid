@@ -68,7 +68,7 @@ AgentSessionImpl::AgentSessionImpl(Connection& c, const string& options) :
     attributes["qmf.agent_capability"] = AGENT_CAPABILITY_0_8;
 
     if (!options.empty()) {
-        qpid::messaging::AddressParser parser(options);
+        qmf::AddressParser parser(options);
         Variant::Map optMap;
         Variant::Map::const_iterator iter;
 

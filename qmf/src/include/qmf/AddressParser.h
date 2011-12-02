@@ -23,14 +23,13 @@
  */
 #include "qpid/messaging/Address.h"
 
-namespace qpid {
-namespace messaging {
+namespace qmf {
 
 class AddressParser
 {
   public:
     AddressParser(const std::string&);
-    bool parse(Address& address);
+    bool parse(qpid::messaging::Address& address);
     bool parseMap(qpid::types::Variant::Map& map);
     bool parseList(qpid::types::Variant::List& list);
   private:
@@ -61,6 +60,6 @@ class AddressParser
     void readMapEntries(qpid::types::Variant::Map& map);
 };
 
-}} // namespace qpid::messaging
+} // namespace qmf
 
 #endif  /*!QPID_MESSAGING_ADDRESSPARSER_H*/

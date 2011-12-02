@@ -11,6 +11,7 @@ include_directories(.. ../include)
 
 if(NOT WIN32)
     set (qmf2_HEADERS
+        ../include/qmf/AddressParser.h
         ../include/qmf/AgentEvent.h
         ../include/qmf/Agent.h
         ../include/qmf/AgentSession.h
@@ -34,6 +35,7 @@ if(NOT WIN32)
     set (qmf2_SOURCES
         ${qmf2_HEADERS}
         agentCapability.h
+        AddressParser.cpp
         Agent.cpp
         AgentEvent.cpp
         AgentEventImpl.h

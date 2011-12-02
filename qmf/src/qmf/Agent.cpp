@@ -29,7 +29,7 @@
 #include "qmf/agentCapability.h"
 #include "qmf/constants.h"
 #include "qpid/messaging/Sender.h"
-#include "qpid/messaging/AddressParser.h"
+#include "qmf/AddressParser.h"
 #include "qpid/management/Buffer.h"
 #include "qpid/log/Statement.h"
 #include <boost/lexical_cast.hpp>
@@ -505,7 +505,7 @@ void AgentImpl::handleQueryResponse(const Variant::List& list, const Message& ms
 
 Query AgentImpl::stringToQuery(const std::string& text)
 {
-    qpid::messaging::AddressParser parser(text);
+    qmf::AddressParser parser(text);
     Variant::Map map;
     Variant::Map::const_iterator iter;
     string className;

@@ -25,7 +25,7 @@
 #include "qmf/SchemaTypes.h"
 #include "qmf/SchemaProperty.h"
 #include "qmf/Hash.h"
-#include "qpid/messaging/AddressParser.h"
+#include "qmf/AddressParser.h"
 #include <list>
 #include <iostream>
 
@@ -69,7 +69,7 @@ SchemaPropertyImpl::SchemaPropertyImpl(const string& n, int t, const string opti
     optional(false), direction(DIR_IN)
 {
     if (!options.empty()) {
-        qpid::messaging::AddressParser parser = qpid::messaging::AddressParser(options);
+        qmf::AddressParser parser = qmf::AddressParser(options);
         Variant::Map optMap;
         Variant::Map::iterator iter;
 

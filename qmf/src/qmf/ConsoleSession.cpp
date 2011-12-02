@@ -27,7 +27,7 @@
 #include "qmf/ConsoleEventImpl.h"
 #include "qmf/constants.h"
 #include "qpid/log/Statement.h"
-#include "qpid/messaging/AddressParser.h"
+#include "qmf/AddressParser.h"
 #include "qpid/messaging/Sender.h"
 #include "qpid/messaging/Receiver.h"
 
@@ -71,7 +71,7 @@ ConsoleSessionImpl::ConsoleSessionImpl(Connection& c, const string& options) :
     connectedBrokerInAgentList(false), schemaCache(new SchemaCache()), nextCorrelator(1)
 {
     if (!options.empty()) {
-        qpid::messaging::AddressParser parser(options);
+        qmf::AddressParser parser(options);
         Variant::Map optMap;
         Variant::Map::const_iterator iter;
 
