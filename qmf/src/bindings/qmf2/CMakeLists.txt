@@ -17,11 +17,13 @@
 # under the License.
 #
 
+include_directories(../../include)
 
 include(FindSWIG)
 include(UseSWIG)
 include(FindRuby)
 include(FindPythonLibs)
+include(FindPythonInterp)
 include(FindPerlLibs)
 
 if (SWIG_FOUND)

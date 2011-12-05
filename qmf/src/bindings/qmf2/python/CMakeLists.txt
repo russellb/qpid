@@ -21,38 +21,40 @@
 ## Use Swig to generate a literal binding to the C++ API
 ##------------------------------------------------------
 set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/python.i PROPERTIES CPLUSPLUS ON)
-set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/python.i PROPERTIES SWIG_FLAGS "-I${qpid-cpp_SOURCE_DIR}/include")
+set_source_files_properties(${CMAKE_CURRENT_SOURCE_DIR}/python.i PROPERTIES
+    SWIG_FLAGS "-I/usr/include")
 
 swig_add_module(cqmf2_python python ${CMAKE_CURRENT_SOURCE_DIR}/python.i)
 swig_link_libraries(cqmf2_python qmf2 ${PYTHON_LIBRARIES})
 
-set_source_files_properties(${swig_generated_file_fullname} PROPERTIES COMPILE_FLAGS "-fno-strict-aliasing -I${PYTHON_INCLUDE_PATH} -I${qpid-cpp_SOURCE_DIR}/include")
+set_source_files_properties(${swig_generated_file_fullname} PROPERTIES
+    COMPILE_FLAGS "-fno-strict-aliasing -I${PYTHON_INCLUDE_PATH}")
 
 ##------------------------------------
 ## Install the complete Python binding
 ##------------------------------------
 execute_process(COMMAND ${PYTHON_EXECUTABLE} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()" OUTPUT_VARIABLE PYTHON_SITE_PACKAGES OUTPUT_STRIP_TRAILING_WHITESPACE)
 install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} -m py_compile cqmf2.py
-                              WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})")
+                          WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})")
 install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} -O -m py_compile cqmf2.py
-                              WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})")
+                          WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})")
 file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/qmf2.py DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} -m py_compile qmf2.py
-                              WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})")
+                          WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})")
 install(CODE "execute_process(COMMAND ${PYTHON_EXECUTABLE} -O -m py_compile qmf2.py
-                              WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})")
+                          WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR})")
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/cqmf2.py
-              ${CMAKE_CURRENT_BINARY_DIR}/cqmf2.pyc
-              ${CMAKE_CURRENT_BINARY_DIR}/cqmf2.pyo
-              ${CMAKE_CURRENT_BINARY_DIR}/qmf2.py
-              ${CMAKE_CURRENT_BINARY_DIR}/qmf2.pyc
-              ${CMAKE_CURRENT_BINARY_DIR}/qmf2.pyo
-        DESTINATION ${PYTHON_SITE_PACKAGES}
-        COMPONENT ${QPID_COMPONENT_CLIENT}
-        )
+          ${CMAKE_CURRENT_BINARY_DIR}/cqmf2.pyc
+          ${CMAKE_CURRENT_BINARY_DIR}/cqmf2.pyo
+          ${CMAKE_CURRENT_BINARY_DIR}/qmf2.py
+          ${CMAKE_CURRENT_BINARY_DIR}/qmf2.pyc
+          ${CMAKE_CURRENT_BINARY_DIR}/qmf2.pyo
+    DESTINATION ${PYTHON_SITE_PACKAGES}
+    COMPONENT ${QPID_COMPONENT_CLIENT}
+    )
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/_cqmf2_python.so
-        RENAME _cqmf2.so
-        DESTINATION ${PYTHON_SITE_PACKAGES}
-        COMPONENT ${QPID_COMPONENT_CLIENT}
-        )
+    RENAME _cqmf2.so
+    DESTINATION ${PYTHON_SITE_PACKAGES}
+    COMPONENT ${QPID_COMPONENT_CLIENT}
+    )
 
